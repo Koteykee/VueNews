@@ -1,7 +1,7 @@
 import { createRouter, createWebHistory } from "vue-router";
 
 import NewsPage from "@/components/NewsPage.vue";
-import NewsInfo from "@/components/NewsInfo.vue";
+import NewsArticle from "@/components/NewsArticle.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -12,9 +12,9 @@ const router = createRouter({
       component: NewsPage,
     },
     {
-      path: "/info",
-      name: "info",
-      component: NewsInfo,
+      path: "/news/:id",
+      name: "article",
+      component: NewsArticle,
     },
   ],
 });
