@@ -3,5 +3,6 @@ export interface News {
   title: string;
   description: string;
   content: string;
+  pubDate: string;
   image_url: string;
 }
