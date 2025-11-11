@@ -20,7 +20,7 @@ export const useNewsStore = defineStore("news", () => {
   const fetchNewsById = async (id: string) => {
     try {
       const response = await getNewsById(id);
-      newsArticle.value = response;
+      newsArticle.value = response[0];
     } catch (error) {
       console.log(error);
     }

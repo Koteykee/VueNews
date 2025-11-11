@@ -1,7 +1,7 @@
 <template>
   <Header />
   <main class="container">
-    <NewsPage />
+    <router-view />
   </main>
   <Footer />
 </template>
@@ -9,7 +9,6 @@
 <script setup lang="ts">
 import Footer from "./components/Footer.vue";
 import Header from "./components/Header.vue";
-import NewsPage from "./components/NewsPage.vue";
 </script>
 
 <style scoped>
