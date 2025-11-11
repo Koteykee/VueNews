@@ -7,7 +7,7 @@ export const getNewsPaginated = async (size = 6): Promise<News[]> => {
   return data.results;
 };
 
-export const getNewsById = async (id: string) => {
+export const getNewsById = async (id: string): Promise<News> => {
   const { data } = await Api.get(`/latest?id=${id}`);
-  return data.results;
+  return data.results[0];
 };
