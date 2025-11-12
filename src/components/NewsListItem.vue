@@ -1,6 +1,8 @@
 <template>
   <router-link :to="`/news/${news.article_id}`" class="card">
-    <img :src="news.image_url" alt="Ad" class="image" />
+    <div class="image-wrapper">
+      <img :src="news.image_url" alt="Ad" class="image" />
+    </div>
     <div>
       <p class="date">{{ news.pubDate }}</p>
       <p class="title">{{ news.title }}</p>
@@ -29,6 +31,10 @@ const { news } = defineProps({
 
 .card:hover .title {
   text-decoration: underline;
+}
+
+.image-wrapper {
+  min-width: 200px;
 }
 
 .image {

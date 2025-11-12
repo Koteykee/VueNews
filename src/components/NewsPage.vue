@@ -1,15 +1,30 @@
 <template>
   <div class="wrapper">
     <h1 class="title">Новости</h1>
-    <NewsList />
+    <Suspense>
+      <NewsList />
+      <template #fallback>
+        <div class="loader-wrapper">
+          <div class="loader"></div>
+        </div>
+      </template>
+    </Suspense>
     <div class="btn-wrapper">
-      <button class="show-more">Показать ещё</button>
+      <button @click="showMore" class="show-more">Показать ещё</button>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
+import { Suspense } from "vue";
+import { useNewsStore } from "@/stores/newsStore";
 import NewsList from "./NewsList.vue";
+
+const newsStore = useNewsStore();
+
+const showMore = () => {
+  newsStore.fetchNewsList();
+};
 </script>
 
 <style scoped>
@@ -32,7 +47,7 @@ import NewsList from "./NewsList.vue";
 }
 
 .show-more {
-  margin: 16px 0 16px 0;
+  margin: 16px 0;
   border: 1px solid #ccc;
   border-radius: 4px;
   padding: 12px 24px;

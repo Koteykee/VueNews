@@ -7,11 +7,13 @@ import { getNewsPaginated, getNewsById } from "@/api/news/news.api";
 export const useNewsStore = defineStore("news", () => {
   const newsList = ref<News[]>([]);
   const newsArticle = ref<News | null>(null);
+  const nextPage = ref<string>("");
 
   const fetchNewsList = async () => {
     try {
-      const response = await getNewsPaginated();
-      newsList.value = response;
+      const response = await getNewsPaginated(nextPage.value);
+      newsList.value.push(...response.results);
+      nextPage.value = response.nextPage;
     } catch (error) {
       console.log(error);
     }

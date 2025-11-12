@@ -14,7 +14,6 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted } from "vue";
 import { useRoute } from "vue-router";
 import { storeToRefs } from "pinia";
 import { useNewsStore } from "@/stores/newsStore";
@@ -23,12 +22,10 @@ const route = useRoute();
 const newsStore = useNewsStore();
 const { newsArticle } = storeToRefs(newsStore);
 
-onMounted(() => {
-  const id = route.params.id as string;
-  if (id) {
-    newsStore.fetchNewsById(id);
-  }
-});
+const id = route.params.id as string;
+if (id) {
+  await newsStore.fetchNewsById(id);
+}
 </script>
 
 <style scoped>
@@ -60,5 +57,12 @@ onMounted(() => {
   font-size: 16px;
   line-height: 140%;
   color: rgba(0, 0, 0, 0.8);
+}
+
+@media screen and (max-width: 650px) {
+  .content-wrapper {
+    flex-direction: column;
+    align-items: center;
+  }
 }
 </style>
